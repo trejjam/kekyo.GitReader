@@ -119,7 +119,7 @@ internal sealed class ObjectAccessor : IDisposable
             throw new InvalidDataException(
                 $"Could not parse the object. Hash={hash}, Step={step}");
 
-        var fs = this.fileStreamCache.Open(objectPath);
+        using var fs = this.fileStreamCache.Open(objectPath);
 
         try
         {
@@ -450,7 +450,7 @@ internal sealed class ObjectAccessor : IDisposable
             throw new InvalidDataException(
                 $"Could not parse the object. File={packedFilePath}, Offset={offset}, Step={step}");
 
-        var fs = this.fileStreamCache.Open(packedFilePath);
+        using var fs = this.fileStreamCache.Open(packedFilePath);
 
         try
         {
